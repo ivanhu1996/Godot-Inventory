@@ -1,0 +1,15 @@
+AudioStreamPlayer
+Area3D
+Timer
+RigidBody3D
+Node3D
+HBoxContainer
+Label
+TextureRect
+Control
+AudioStreamPlayer3D
+GPUParticles3D
+MeshInstance3D
+CollisionShape3D
+Node
+Marker3D
