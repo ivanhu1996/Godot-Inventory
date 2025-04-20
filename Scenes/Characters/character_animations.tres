@@ -129,5 +129,6 @@ states/Locomotion/node = SubResource("AnimationNodeBlendSpace1D_pnjb4")
 states/Locomotion/position = Vector2(545, 100)
 states/Misc/node = SubResource("AnimationNodeStateMachine_httk7")
 states/Misc/position = Vector2(545, 219)
+states/Start/position = Vector2(199, 100)
 transitions = ["Start", "Locomotion", SubResource("AnimationNodeStateMachineTransition_op48l"), "Jump_Start", "Jump_Idle", SubResource("AnimationNodeStateMachineTransition_jm3p8"), "Jump_Idle", "Jump_Land", SubResource("AnimationNodeStateMachineTransition_27q0y"), "Jump_Land", "Locomotion", SubResource("AnimationNodeStateMachineTransition_52vtl"), "Locomotion", "Jump_Start", SubResource("AnimationNodeStateMachineTransition_3oved"), "Locomotion", "Jump_Idle", SubResource("AnimationNodeStateMachineTransition_lbmu1"), "Locomotion", "Misc", SubResource("AnimationNodeStateMachineTransition_3ph85"), "Misc", "Locomotion", SubResource("AnimationNodeStateMachineTransition_ntsmc")]
 graph_offset = Vector2(-379, -122)

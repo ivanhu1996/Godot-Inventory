@@ -1,10 +1,12 @@
 [gd_scene load_steps=6 format=3 uid="uid://dqfi0uxh0vsni"]
 
-[ext_resource type="Script" path="res://Scripts/Managers/credits_manager.gd" id="1_nihr8"]
-[ext_resource type="AudioStream" uid="uid://12kfmcbvn482" path="res://Imported Assets/Music/Presents for the Kids.ogg" id="2_1uxkg"]
-[ext_resource type="Script" path="res://Scripts/UI/fade.gd" id="3_2tp1g"]
+[ext_resource type="Script" uid="uid://dwiea3svl5dhx" path="res://Scripts/Managers/credits_manager.gd" id="1_nihr8"]
+[ext_resource type="Script" uid="uid://2l2h0u00psxl" path="res://Scripts/UI/fade.gd" id="3_2tp1g"]
 [ext_resource type="FontFile" uid="uid://cal1olhubng48" path="res://Imported Assets/Fonts/Celtica-Book.ttf" id="3_gbocl"]
 [ext_resource type="FontFile" uid="uid://dtdebvoxhhvdr" path="res://Imported Assets/Fonts/MorrisRomanBlack.ttf" id="4_pogpt"]
+
+[sub_resource type="Resource" id="Resource_1bamb"]
+metadata/__load_path__ = "res://Imported Assets/Music/Presents for the Kids.ogg"
 
 [node name="Credits" type="Control" node_paths=PackedStringArray("_fade")]
 layout_mode = 3
@@ -14,7 +16,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_nihr8")
-_background_music = ExtResource("2_1uxkg")
+_background_music = SubResource("Resource_1bamb")
 _fade = NodePath("Fade")
 
 [node name="Scroll" type="VBoxContainer" parent="."]

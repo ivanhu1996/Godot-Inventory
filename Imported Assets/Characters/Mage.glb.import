@@ -1,15 +1,15 @@
 [remap]
 
-importer="scene"
+importer="animation_library"
 importer_version=1
-type="PackedScene"
+type="AnimationLibrary"
 uid="uid://sl3ujt8v3r52"
-path="res://.godot/imported/Mage.glb-cc39208f7de34a34ed37baac41b18148.scn"
+path="res://.godot/imported/Mage.glb-cc39208f7de34a34ed37baac41b18148.res"
 
 [deps]
 
 source_file="res://Imported Assets/Characters/Mage.glb"
-dest_files=["res://.godot/imported/Mage.glb-cc39208f7de34a34ed37baac41b18148.scn"]
+dest_files=["res://.godot/imported/Mage.glb-cc39208f7de34a34ed37baac41b18148.res"]
 
 [params]
 
@@ -17,6 +17,8 @@ nodes/root_type=""
 nodes/root_name=""
 nodes/apply_root_scale=true
 nodes/root_scale=1.0
+nodes/import_as_skeleton_bones=false
+nodes/use_node_type_suffixes=true
 meshes/ensure_tangents=true
 meshes/generate_lods=true
 meshes/create_shadow_meshes=true
@@ -28,6 +30,7 @@ animation/import=true
 animation/fps=30
 animation/trimming=false
 animation/remove_immutable_tracks=true
+animation/import_rest_as_RESET=false
 import_script/path=""
 _subresources={
 "animations": {

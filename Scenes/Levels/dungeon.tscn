@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://dujtkfkjn3agj"]
 
-[ext_resource type="Script" path="res://Scripts/level.gd" id="1_lj7g2"]
+[ext_resource type="Script" uid="uid://yic1nyb43g2t" path="res://Scripts/level.gd" id="1_lj7g2"]
 [ext_resource type="MeshLibrary" uid="uid://ixy0tpubfryo" path="res://Imported Assets/Dungeon/dungeon_mesh_library.tres" id="2_8ffms"]
 [ext_resource type="PackedScene" uid="uid://di84uda7rr2ct" path="res://Scenes/Characters/rogue.tscn" id="4_ykh5e"]
 [ext_resource type="PackedScene" uid="uid://b5pf553lktajg" path="res://Scenes/Characters/mage.tscn" id="5_a1e6b"]
