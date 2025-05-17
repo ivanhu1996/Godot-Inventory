@@ -29,6 +29,10 @@
 height = 3.1
 radius = 2.0
 
+[sub_resource type="Curve" id="Curve_iivbl"]
+_data = [Vector2(0, 0.0337079), 0.0, 0.0, 0, 0, Vector2(0.50431, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_7t8sx"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_mg4q0"]
@@ -50,10 +54,6 @@ radius = 2.0
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_8m3t6"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ese38"]
-
-[sub_resource type="Curve" id="Curve_iivbl"]
-_data = [Vector2(0, 0.0337079), 0.0, 0.0, 0, 0, Vector2(0.50431, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
-point_count = 3
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_x06dg"]
 
@@ -162,120 +162,8 @@ script = ExtResource("7_dbeox")
 
 [node name="UI" type="CanvasLayer" parent="."]
 
-[node name="Inventory" type="Panel" parent="UI"]
-unique_name_in_owner = true
-visible = false
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -1280.0
-offset_top = -720.0
-offset_right = 1280.0
-offset_bottom = 720.0
-grow_horizontal = 2
-grow_vertical = 2
-scale = Vector2(0.25, 0.25)
-pivot_offset = Vector2(1280, 720)
-theme = ExtResource("9_exi56")
-script = ExtResource("10_7t8sx")
-
-[node name="Title" type="Label" parent="UI/Inventory"]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.5
-anchor_top = 0.05
-anchor_right = 0.5
-anchor_bottom = 0.1
-offset_left = -320.0
-offset_right = 348.0
-offset_bottom = 157.0
-grow_horizontal = 2
-theme_override_fonts/font = ExtResource("10_p2meq")
-theme_override_font_sizes/font_size = 128
-text = "Inventory"
-
-[node name="ScrollContainer" type="ScrollContainer" parent="UI/Inventory"]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.05
-anchor_top = 0.2
-anchor_right = 0.58
-anchor_bottom = 0.9
-
-[node name="GridContainer" type="GridContainer" parent="UI/Inventory/ScrollContainer"]
-layout_mode = 2
-columns = 5
-
-[node name="VBoxContainer" type="VBoxContainer" parent="UI/Inventory"]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.6
-anchor_top = 0.2
-anchor_right = 0.95
-anchor_bottom = 0.9
-theme_override_constants/separation = 64
-
-[node name="Item Name" type="Label" parent="UI/Inventory/VBoxContainer"]
-custom_minimum_size = Vector2(0, 64)
-layout_mode = 2
-theme_override_fonts/font = ExtResource("10_p2meq")
-autowrap_mode = 2
-
-[node name="Item Description" type="Label" parent="UI/Inventory/VBoxContainer"]
-custom_minimum_size = Vector2(0, 64)
-layout_mode = 2
-size_flags_vertical = 3
-theme_override_fonts/font = ExtResource("10_p2meq")
-autowrap_mode = 2
-
-[node name="HBoxContainer" type="HBoxContainer" parent="UI/Inventory/VBoxContainer"]
-layout_mode = 2
-
-[node name="Auxiliary" type="Button" parent="UI/Inventory/VBoxContainer/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_styles/focus = SubResource("StyleBoxTexture_7t8sx")
-theme_override_styles/disabled_mirrored = SubResource("StyleBoxTexture_mg4q0")
-theme_override_styles/disabled = SubResource("StyleBoxTexture_vm72l")
-theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxTexture_22asu")
-theme_override_styles/hover_pressed = SubResource("StyleBoxTexture_fkdbe")
-theme_override_styles/hover_mirrored = SubResource("StyleBoxTexture_81klo")
-theme_override_styles/hover = SubResource("StyleBoxTexture_tgy6u")
-theme_override_styles/pressed_mirrored = SubResource("StyleBoxTexture_cwurv")
-theme_override_styles/pressed = SubResource("StyleBoxTexture_mucmn")
-theme_override_styles/normal_mirrored = SubResource("StyleBoxTexture_8m3t6")
-theme_override_styles/normal = SubResource("StyleBoxTexture_ese38")
-text = "X Use"
-
-[node name="Drop" type="Button" parent="UI/Inventory/VBoxContainer/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_styles/focus = SubResource("StyleBoxTexture_7t8sx")
-theme_override_styles/disabled_mirrored = SubResource("StyleBoxTexture_mg4q0")
-theme_override_styles/disabled = SubResource("StyleBoxTexture_vm72l")
-theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxTexture_22asu")
-theme_override_styles/hover_pressed = SubResource("StyleBoxTexture_fkdbe")
-theme_override_styles/hover_mirrored = SubResource("StyleBoxTexture_81klo")
-theme_override_styles/hover = SubResource("StyleBoxTexture_tgy6u")
-theme_override_styles/pressed_mirrored = SubResource("StyleBoxTexture_cwurv")
-theme_override_styles/pressed = SubResource("StyleBoxTexture_mucmn")
-theme_override_styles/normal_mirrored = SubResource("StyleBoxTexture_8m3t6")
-theme_override_styles/normal = SubResource("StyleBoxTexture_ese38")
-text = "Y Drop"
-
-[node name="Close" type="Button" parent="UI/Inventory"]
-layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -128.0
-offset_bottom = 128.0
-grow_horizontal = 0
-theme_type_variation = &"CloseButton"
-
 [node name="Wallet" type="HBoxContainer" parent="UI"]
+unique_name_in_owner = true
 offset_left = 32.0
 offset_top = -42.0
 offset_right = 336.0
@@ -322,6 +210,169 @@ initial_velocity_max = 32.0
 scale_amount_min = 0.05
 scale_amount_max = 0.05
 scale_amount_curve = SubResource("Curve_iivbl")
+
+[node name="Inventory" type="Panel" parent="UI"]
+unique_name_in_owner = true
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -1280.0
+offset_top = -720.0
+offset_right = 1280.0
+offset_bottom = 720.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.25, 0.25)
+pivot_offset = Vector2(1280, 720)
+theme = ExtResource("9_exi56")
+script = ExtResource("10_7t8sx")
+
+[node name="Title" type="Label" parent="UI/Inventory"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.05
+anchor_right = 0.5
+anchor_bottom = 0.1
+offset_left = -320.0
+offset_right = 348.0
+offset_bottom = 157.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("10_p2meq")
+theme_override_font_sizes/font_size = 128
+text = "Inventory"
+
+[node name="Info" type="VBoxContainer" parent="UI/Inventory"]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.6
+anchor_top = 0.2
+anchor_right = 0.95
+anchor_bottom = 0.9
+theme_override_constants/separation = 64
+
+[node name="Item Name" type="Label" parent="UI/Inventory/Info"]
+custom_minimum_size = Vector2(0, 64)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("10_p2meq")
+autowrap_mode = 2
+
+[node name="Item Description" type="Label" parent="UI/Inventory/Info"]
+custom_minimum_size = Vector2(0, 64)
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_fonts/font = ExtResource("10_p2meq")
+autowrap_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/Inventory/Info"]
+layout_mode = 2
+
+[node name="Auxiliary" type="Button" parent="UI/Inventory/Info/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/focus = SubResource("StyleBoxTexture_7t8sx")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxTexture_mg4q0")
+theme_override_styles/disabled = SubResource("StyleBoxTexture_vm72l")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxTexture_22asu")
+theme_override_styles/hover_pressed = SubResource("StyleBoxTexture_fkdbe")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxTexture_81klo")
+theme_override_styles/hover = SubResource("StyleBoxTexture_tgy6u")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxTexture_cwurv")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_mucmn")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxTexture_8m3t6")
+theme_override_styles/normal = SubResource("StyleBoxTexture_ese38")
+text = "X Use"
+
+[node name="Drop" type="Button" parent="UI/Inventory/Info/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/focus = SubResource("StyleBoxTexture_7t8sx")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxTexture_mg4q0")
+theme_override_styles/disabled = SubResource("StyleBoxTexture_vm72l")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxTexture_22asu")
+theme_override_styles/hover_pressed = SubResource("StyleBoxTexture_fkdbe")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxTexture_81klo")
+theme_override_styles/hover = SubResource("StyleBoxTexture_tgy6u")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxTexture_cwurv")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_mucmn")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxTexture_8m3t6")
+theme_override_styles/normal = SubResource("StyleBoxTexture_ese38")
+text = "Y Drop"
+
+[node name="Shop" type="VBoxContainer" parent="UI/Inventory"]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.6
+anchor_top = 0.2
+anchor_right = 0.95
+anchor_bottom = 0.9
+theme_override_constants/separation = 64
+
+[node name="ScrollContainer" type="ScrollContainer" parent="UI/Inventory/Shop"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="GridContainer" type="GridContainer" parent="UI/Inventory/Shop/ScrollContainer"]
+layout_mode = 2
+columns = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/Inventory/Shop"]
+layout_mode = 2
+theme_override_constants/separation = 32
+
+[node name="Coin Icon" type="TextureRect" parent="UI/Inventory/Shop/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("17_ewbju")
+expand_mode = 3
+stretch_mode = 4
+
+[node name="Price" type="Label" parent="UI/Inventory/Shop/HBoxContainer"]
+custom_minimum_size = Vector2(280, 0)
+layout_mode = 2
+text = "0"
+
+[node name="Transaction" type="Button" parent="UI/Inventory/Shop/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/focus = SubResource("StyleBoxTexture_7t8sx")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxTexture_mg4q0")
+theme_override_styles/disabled = SubResource("StyleBoxTexture_vm72l")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxTexture_22asu")
+theme_override_styles/hover_pressed = SubResource("StyleBoxTexture_fkdbe")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxTexture_81klo")
+theme_override_styles/hover = SubResource("StyleBoxTexture_tgy6u")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxTexture_cwurv")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_mucmn")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxTexture_8m3t6")
+theme_override_styles/normal = SubResource("StyleBoxTexture_ese38")
+text = "X Buy"
+
+[node name="ScrollContainer" type="ScrollContainer" parent="UI/Inventory"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.05
+anchor_top = 0.2
+anchor_right = 0.58
+anchor_bottom = 0.9
+
+[node name="GridContainer" type="GridContainer" parent="UI/Inventory/ScrollContainer"]
+layout_mode = 2
+columns = 5
+
+[node name="Close" type="Button" parent="UI/Inventory"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -128.0
+offset_bottom = 128.0
+grow_horizontal = 0
+theme_type_variation = &"CloseButton"
 
 [node name="Dialog" type="Control" parent="UI"]
 visible = false
@@ -462,12 +513,14 @@ script = ExtResource("8_v3vli")
 
 [connection signal="body_entered" from="Barbarian/Pick UP Radius" to="Barbarian/Pick UP Radius" method="_on_body_entered"]
 [connection signal="body_exited" from="Barbarian/Pick UP Radius" to="Barbarian/Pick UP Radius" method="_on_body_exited"]
-[connection signal="focus_entered" from="UI/Inventory/VBoxContainer/HBoxContainer/Auxiliary" to="UI/Inventory" method="_on_action_button_focus_entered"]
-[connection signal="pressed" from="UI/Inventory/VBoxContainer/HBoxContainer/Auxiliary" to="UI/Inventory" method="_on_auxiliary_pressed"]
-[connection signal="focus_entered" from="UI/Inventory/VBoxContainer/HBoxContainer/Drop" to="UI/Inventory" method="_on_action_button_focus_entered"]
-[connection signal="pressed" from="UI/Inventory/VBoxContainer/HBoxContainer/Drop" to="UI/Inventory" method="_on_drop_pressed"]
-[connection signal="pressed" from="UI/Inventory/Close" to="UI/Inventory" method="close"]
 [connection signal="timeout" from="UI/Wallet/Autohide" to="UI/Wallet" method="close"]
+[connection signal="focus_entered" from="UI/Inventory/Info/HBoxContainer/Auxiliary" to="UI/Inventory" method="_on_action_button_focus_entered"]
+[connection signal="pressed" from="UI/Inventory/Info/HBoxContainer/Auxiliary" to="UI/Inventory" method="_on_auxiliary_pressed"]
+[connection signal="focus_entered" from="UI/Inventory/Info/HBoxContainer/Drop" to="UI/Inventory" method="_on_action_button_focus_entered"]
+[connection signal="pressed" from="UI/Inventory/Info/HBoxContainer/Drop" to="UI/Inventory" method="_on_drop_pressed"]
+[connection signal="focus_entered" from="UI/Inventory/Shop/HBoxContainer/Transaction" to="UI/Inventory" method="_on_action_button_focus_entered"]
+[connection signal="pressed" from="UI/Inventory/Shop/HBoxContainer/Transaction" to="UI/Inventory" method="_on_transaction_pressed"]
+[connection signal="pressed" from="UI/Inventory/Close" to="UI/Inventory" method="close"]
 [connection signal="pressed" from="UI/Dialog/Box/Continue" to="UI/Dialog" method="_on_continue_pressed"]
 [connection signal="pressed" from="UI/Dialog/Options/Option 0" to="UI/Dialog" method="_on_option_pressed" binds= [0]]
 [connection signal="pressed" from="UI/Dialog/Options/Option 1" to="UI/Dialog" method="_on_option_pressed" binds= [1]]

@@ -4,16 +4,73 @@ const PREFAB : PackedScene = preload("res://Scenes/UI/item.tscn")
 
 @onready var _character: CharacterBody3D = %Barbarian
 @onready var player: Node = %Player
+@onready var _wallet: Counter = %Wallet
+
 @onready var _container: Container = $ScrollContainer/GridContainer
-@onready var _item_name: Label = $"VBoxContainer/Item Name"
-@onready var _item_description: Label = $"VBoxContainer/Item Description"
-@onready var _auxiliary: Button = $VBoxContainer/HBoxContainer/Auxiliary
-@onready var _drop: Button = $VBoxContainer/HBoxContainer/Drop
+@onready var _item_name: Label = $"Info/Item Name"
+@onready var _item_description: Label = $"Info/Item Description"
+@onready var _auxiliary: Button = $Info/HBoxContainer/Auxiliary
+@onready var _drop: Button = $Info/HBoxContainer/Drop
 
 var is_open :bool
 var _selected_item : Item
 var _selected_button : Button
 var _previously_selected_button : Button
+
+#region SHOP
+@onready var _title: Label = $Title
+@onready var _info_view: Control = $Info
+@onready var _shop_view: Control = $Shop
+@onready var _stock: Container = $Shop/ScrollContainer/GridContainer
+@onready var _price: Label = $Shop/HBoxContainer/Price
+@onready var _transaction: Button = $Shop/HBoxContainer/Transaction
+
+
+
+var _shop: Shop
+
+signal closed()
+
+func open_as_shop(shop : Shop) -> Signal:
+	_shop = shop
+	_title.text = "shop"
+	_info_view.visible = false
+	_shop_view.visible = true
+	_genergate_stock(shop.stock)
+	open()
+	return closed
+	
+func _genergate_stock(stock : Array[Item]):
+	for item in stock:
+		_add_item_button(item, 1, _stock)
+
+func _clear_stock():
+	for item in _stock.get_children():
+		item.queue_free()
+	_shop = null
+
+
+func _on_transaction_pressed() -> void:
+	if not _selected_item || not _shop:
+		return
+	#_selected_button在商店页面是买，在背包是卖
+	if _selected_button.get_meta("is_in_inventory"):
+		File.progress.coins += _selected_item.value
+		_remove_item(_selected_item, 1, _selected_button)
+	else:
+		@warning_ignore("narrowing_conversion")
+		File.progress.coins -= _selected_item.value * _shop.markup
+		add_item(_selected_item, 1)
+		_transaction.disabled = File.progress.coins < _selected_item.value * _shop.markup
+
+
+func open_as_inventory():
+	_title.text = "inventory"
+	_info_view.visible = true
+	_shop_view.visible = false
+	open()
+
+#endregion
 
 func _ready() -> void:
 	for item in File.progress.inventory:
@@ -22,12 +79,12 @@ func _ready() -> void:
 	for equipped in File.progress.equipment:
 		if equipped != -1:
 			_container.get_child(equipped).grab_focus()
-			print(equipped)
 			_equip_selected_item()
 			
 func open(breadcrumb : Menu = null):
 	player.enabled = false
 	super.open(breadcrumb)
+	_wallet.open(true)
 	if _container.get_child_count() > 0:
 		_container.get_child(0).grab_focus()
 	else:
@@ -74,17 +131,19 @@ func _add_stackable_item(item : Item,quantity : int):
 			_add_item_button(item,item.stack_limit)
 			quantity -= item.stack_limit
 		
-func _add_item_button(item : Item,quantity : int = 1):
+func _add_item_button(item : Item, quantity : int = 1, container : Container = _container):
 	var new_item_button :Button = PREFAB.instantiate()
 	new_item_button.get_node("Icon").texture = item.icon
 	_update_quantity(new_item_button,quantity)
-	_container.add_child(new_item_button)
+	container.add_child(new_item_button)
+	new_item_button.set_meta("is_in_inventory", container == _container)
 	new_item_button.focus_entered.connect(_display_item_information.bind(item, new_item_button))
 	new_item_button.focus_exited.connect(_display_item_information.bind(null, null))
 	
 func _update_quantity(button:Button,quantity : int):
 	if quantity != 1:
 		button.get_node("Label").text = str(quantity)
+		button.get_node("Label").visible = true
 	else:
 		button.get_node("Label").visible = false
 
@@ -94,6 +153,17 @@ func _display_item_information(item : Item =null, button : Button = null):
 	_selected_item = item
 	_previously_selected_button = _selected_button
 	_selected_button = button
+	if _selected_button: 
+		if _selected_button.get_meta("is_in_inventory"):
+			_price.text = str(_selected_item.value)
+			_transaction.text = "X Sell"
+			_transaction.disabled = _selected_item_is_equipped()
+		else:
+			_price.text = str(_selected_item.value * _shop.markup)
+			_transaction.text = "X Buy"
+			_transaction.disabled = File.progress.coins < _selected_item.value*_shop.markup
+			
+		
 	if item is Equipment:
 		#装备物品使用按钮常开，丢弃按钮对装备的物品无法使用
 		_auxiliary.disabled = false
@@ -103,7 +173,7 @@ func _display_item_information(item : Item =null, button : Button = null):
 		else:
 			_auxiliary.text = "X equip"
 			_drop.disabled = false
-	if item && item.is_usable:
+	elif item && item.is_usable:
 		_auxiliary.text = "X Use"
 		_auxiliary.disabled = false
 		_drop.disabled = false
@@ -111,13 +181,22 @@ func _display_item_information(item : Item =null, button : Button = null):
 		_auxiliary.disabled = true
 		_drop.disabled = not item
 
-func _selected_item_is_equipped():
-	var index : int = _container.get_children().find(_selected_button)
-	return File.progress.equipment[_selected_item.type] == _container.get_children().find(_selected_button)
+func _selected_item_is_equipped() -> bool:
+	#确保是选择的物品已经是装备
+	return (
+		_selected_item && 
+		_selected_item is Equipment && 
+		File.progress.equipment[_selected_item.type] == _container.get_children().find(_selected_button)
+		)
 
 func _input(event : InputEvent):
 	if not is_open:
 		return
+	if _shop:
+		if event.is_action_pressed("use_item"):
+			if _transaction.disabled == false:
+				_transaction.pressed.emit()
+			return
 	if event.is_action_pressed("use_item"):
 		if _auxiliary.disabled == false:
 			_auxiliary.pressed.emit()
@@ -151,8 +230,8 @@ func _equip_selected_item():
 
 func _unequip_selected_item():
 	File.progress.equipment[_selected_item.type] = -1
-	_character.don(_selected_item.type)
-	_selected_item.get_node("Label").visible = false
+	_character.doff(_selected_item.type)
+	_selected_button.get_node("Label").visible = false
 	_auxiliary.text = "X Equip"
 	_drop.disabled = false
 
@@ -240,5 +319,8 @@ func _focus_next(button : Button):
 func close():
 	if not _breadcrumb:
 		player.enabled = true
+	_wallet.close()
+	_clear_stock()
 	super.close()
 	is_open = false
+	closed.emit()

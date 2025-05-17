@@ -70,16 +70,21 @@ func use_item(item : Item):
 
 func don(item : Equipment):
 	var instance : Node3D = load(item.scene).instantiate()
+	instance.collision_layer = 0
 	_sockets[item.type].add_child(instance)
 	instance.freeze = true
-	await animate("Use_Item")
-	print(name + " used a " + item.name)
-	instance.queue_free()
 
 func doff(socket : int):
+	#var equipped_index = 0
+	#if _sockets[socket].get_child_count() > 0:
+		#print(_sockets[socket].get_child(0))
+		#while equipped_index < _sockets[socket].get_child_count():
+			#_sockets[socket].get_child(equipped_index).queue_free()
+			#equipped_index +=1
+	
 	if _sockets[socket].get_child_count() > 0:
-		_sockets[socket].get_child(0).queue_free()
-
+		_sockets[socket].get_child(0).free()
+		
 func face_direction(forward_direction : float):
 	_rig.rotation.y = forward_direction
 

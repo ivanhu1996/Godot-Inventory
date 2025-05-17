@@ -1,17 +1,23 @@
-[gd_scene load_steps=12 format=3 uid="uid://dujtkfkjn3agj"]
+[gd_scene load_steps=17 format=3 uid="uid://dujtkfkjn3agj"]
 
 [ext_resource type="Script" uid="uid://yic1nyb43g2t" path="res://Scripts/level.gd" id="1_lj7g2"]
 [ext_resource type="MeshLibrary" uid="uid://ixy0tpubfryo" path="res://Imported Assets/Dungeon/dungeon_mesh_library.tres" id="2_8ffms"]
 [ext_resource type="PackedScene" uid="uid://di84uda7rr2ct" path="res://Scenes/Characters/rogue.tscn" id="4_ykh5e"]
+[ext_resource type="Script" uid="uid://b1i3pk3fndmye" path="res://Scripts/Events/shop.gd" id="5_8rc7b"]
 [ext_resource type="PackedScene" uid="uid://b5pf553lktajg" path="res://Scenes/Characters/mage.tscn" id="5_a1e6b"]
+[ext_resource type="Script" uid="uid://cw54v5qvdjun3" path="res://Scripts/Custom Resources/items/item.gd" id="6_3rfsp"]
 [ext_resource type="PackedScene" uid="uid://7pr6qxigvjoc" path="res://Scenes/Characters/knight.tscn" id="6_r644w"]
 [ext_resource type="PackedScene" uid="uid://csh5huhat520f" path="res://Scenes/Items/coin_stack_small.tscn" id="6_y5wyw"]
+[ext_resource type="Resource" uid="uid://ojhjxm0345nd" path="res://Scripts/Custom Resources/items/Health Potion.tres" id="7_2vj0y"]
 [ext_resource type="PackedScene" uid="uid://b8vcp8a01b8ad" path="res://Scenes/Items/coin_stack_large.tscn" id="7_xwoim"]
+[ext_resource type="Resource" uid="uid://5a54fm17io3w" path="res://Scripts/Custom Resources/items/Axe.tres" id="8_n1itj"]
 [ext_resource type="PackedScene" uid="uid://dl6pyyxlpubf1" path="res://Scenes/Items/coin_stack_medium.tscn" id="8_vtdvj"]
 [ext_resource type="PackedScene" uid="uid://xxo65bylshuc" path="res://Scenes/Items/health_potion.tscn" id="9_vtdvj"]
 [ext_resource type="PackedScene" uid="uid://cnakjynsitnxa" path="res://Scenes/Items/axe.tscn" id="10_tlpit"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_06lu3"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_tmok6"]
 
 [node name="Dungeon" type="Node3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.737222, 0)
@@ -104,6 +110,20 @@ transform = Transform3D(1, 0, 5.56363e-08, 0, 1, 0, -5.56363e-08, 0, 1, 1, 0, -1
 
 [node name="Knight" parent="NPCs" instance=ExtResource("6_r644w")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13, 0, 1)
+
+[node name="Shop" type="Area3D" parent="NPCs/Knight"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.20195, 0)
+collision_layer = 16
+collision_mask = 0
+monitoring = false
+script = ExtResource("5_8rc7b")
+_intro = "I've got just what you need!"
+_outro = "Thank you for your patronage!"
+markup = 10.0
+stock = Array[ExtResource("6_3rfsp")]([ExtResource("7_2vj0y"), ExtResource("8_n1itj")])
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NPCs/Knight/Shop"]
+shape = SubResource("CapsuleShape3D_tmok6")
 
 [node name="Rogue" parent="NPCs" instance=ExtResource("4_ykh5e")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.5, 0, -11)

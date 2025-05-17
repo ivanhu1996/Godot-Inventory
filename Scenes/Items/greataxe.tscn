@@ -1,6 +1,8 @@
-[gd_scene load_steps=5 format=4 uid="uid://btwcaocjyhxjb"]
+[gd_scene load_steps=8 format=4 uid="uid://btwcaocjyhxjb"]
 
 [ext_resource type="Texture2D" uid="uid://caxtjyslwx5eg" path="res://Imported Assets/Characters/Barbarian_barbarian_texture.png" id="1_4nv48"]
+[ext_resource type="Script" uid="uid://bjcrmuamsdt0t" path="res://Scripts/item.gd" id="1_8mb2i"]
+[ext_resource type="Resource" uid="uid://cx340h5yik3t5" path="res://Scripts/Custom Resources/items/Greataxe.tres" id="2_l3i7t"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_l3gex"]
 resource_name = "barbarian_texture"
@@ -42,7 +44,19 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_bxgus")
 
-[node name="2H_Axe" type="MeshInstance3D"]
-visible = false
+[sub_resource type="BoxShape3D" id="BoxShape3D_4nv48"]
+size = Vector3(1.22925, 1.72461, 0.266846)
+
+[node name="Greataxe" type="RigidBody3D"]
+collision_layer = 32
+collision_mask = 801
+script = ExtResource("1_8mb2i")
+resource = ExtResource("2_l3i7t")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("ArrayMesh_3hojn")
 skeleton = NodePath("")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00476074, 0.47168, -0.00012207)
+shape = SubResource("BoxShape3D_4nv48")

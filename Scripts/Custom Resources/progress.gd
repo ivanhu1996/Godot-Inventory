@@ -11,17 +11,17 @@ class_name Progress extends Resource
 @export var inventory : Array = []
 @export var equipment : Array = [1,2,3,4]
 func _init():
-	coins = 0
+	coins = 10
 	#数组里面是字典形式
 	inventory = [
-		{"name" : "Health Potion","quantity":1},
+		{"name" : "Health Potion","quantity":88},
 		{"name" : "Axe"},
 		{"name" : "Barbarian Round Shield"},
-		#{"name" : "Barbarian Hat"},
-		#{"name" : "Barbarian Cape"},
+		{"name" : "Barbarian Hat"},
+		{"name" : "Barbarian Cape"},
 		#{"name" : "Bomb"},
 		#{"name" : "Crossbow"},
-		#{"name" : "Greataxe"},
+		{"name" : "Greataxe"},
 		{"name" : "Greatsword"},
 		#{"name" : "Heavy Crossbow"},
 		#{"name" : "Knife"},
