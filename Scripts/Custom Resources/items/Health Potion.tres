@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="Stackable" load_steps=4 format=3 uid="uid://ojhjxm0345nd"]
+
+[ext_resource type="Texture2D" uid="uid://0g2qbq4g53xm" path="res://Imported Assets/UI/Icons/#1 - Transparent Icons.png" id="1_a5ewf"]
+[ext_resource type="Script" uid="uid://mvqif1vofsqi" path="res://Scripts/Custom Resources/items/stackable.gd" id="2_a5ewf"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_haqas"]
+atlas = ExtResource("1_a5ewf")
+region = Rect2(0, 288, 32, 32)
+
+[resource]
+script = ExtResource("2_a5ewf")
+stack_limit = 99
+name = "Health Potion"
+description = "cover some health"
+icon = SubResource("AtlasTexture_haqas")
+scene = "res://Scenes/Items/health_potion.tscn"
+is_usable = true
+is_consumed_on_use = true
+metadata/_custom_type_script = "uid://cw54v5qvdjun3"

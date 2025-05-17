@@ -1,13 +1,26 @@
-res://Imported Assets/Dungeon/dungeon_mesh_library.tscn
-res://Scenes/Characters/barbarian.tscn
-res://Scenes/Characters/knight.tscn
-res://Scenes/Characters/mage.tscn
-res://Scenes/Characters/rogue.tscn
-res://Scenes/Levels/dungeon.tscn
-res://Scenes/credits.tscn
-res://Scenes/game.tscn
-res://Scenes/settings_menu.tscn
-res://Scenes/title.tscn
+res://Scenes/Items/sword.tscn
 res://Imported Assets/Dungeon/dungeon_mesh_library.tres
 res://Scenes/Characters/character_animations.tres
-res://menu_buttons.tres
+res://coin_mesh.tres
+res://Scripts/Custom Resources/items/Health Potion.tres
+res://Scripts/Custom Resources/items/Axe.tres
+res://Themes/menu_buttons.tres
+res://Themes/inventory.tres
+res://Scripts/Custom Resources/items/Sword.tres
+res://Scenes/Items/greatsword.tscn
+res://Scripts/Custom Resources/items/GreatSword.tres
+res://Scenes/Characters/knight.tscn
+res://Scripts/Custom Resources/progress.gd
+res://Scenes/Levels/dungeon.tscn
+res://Scenes/game.tscn
+res://Scenes/Characters/barbarian.tscn
+res://Scenes/Items/axe.tscn
+res://Scenes/Items/coin_stack_small.tscn
+res://Scenes/Items/health_potion.tscn
+res://Scenes/UI/item.tscn
+res://Scenes/Characters/mage.tscn
+res://Scenes/Characters/rogue.tscn
+res://Scripts/UI/inventory.gd
+res://Scripts/character.gd
+res://Scenes/Items/barbarian_round_shield.tscn
+res://Scripts/Custom Resources/items/Barbarian Round Shield.tres

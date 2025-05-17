@@ -1,15 +1,15 @@
 [remap]
 
-importer="animation_library"
+importer="scene"
 importer_version=1
-type="AnimationLibrary"
+type="PackedScene"
 uid="uid://dghocvqlutlg0"
-path="res://.godot/imported/Rogue.glb-124e270e12953a62426d7bd2cb0d811e.res"
+path="res://.godot/imported/Rogue.glb-124e270e12953a62426d7bd2cb0d811e.scn"
 
 [deps]
 
 source_file="res://Imported Assets/Characters/Rogue.glb"
-dest_files=["res://.godot/imported/Rogue.glb-124e270e12953a62426d7bd2cb0d811e.res"]
+dest_files=["res://.godot/imported/Rogue.glb-124e270e12953a62426d7bd2cb0d811e.scn"]
 
 [params]
 

@@ -1,15 +1,15 @@
 [remap]
 
-importer="animation_library"
+importer="scene"
 importer_version=1
-type="AnimationLibrary"
+type="PackedScene"
 uid="uid://fbirgjw7ah4y"
-path="res://.godot/imported/Barbarian.glb-6a4b808c22050462182eb5d9de1ab49d.res"
+path="res://.godot/imported/Barbarian.glb-6a4b808c22050462182eb5d9de1ab49d.scn"
 
 [deps]
 
 source_file="res://Imported Assets/Characters/Barbarian.glb"
-dest_files=["res://.godot/imported/Barbarian.glb-6a4b808c22050462182eb5d9de1ab49d.res"]
+dest_files=["res://.godot/imported/Barbarian.glb-6a4b808c22050462182eb5d9de1ab49d.scn"]
 
 [params]
 

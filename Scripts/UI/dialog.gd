@@ -24,6 +24,7 @@ func display_line(line, speaker : String = "") -> Signal:
 	_current_line = 0
 	_speaker_name = speaker
 	open()
+	_continue.grab_focus()
 	_next_line()
 	return finished
 
@@ -62,6 +63,8 @@ func _next_line():
 	for i in _options.size():
 		_options[i].visible = false
 	_typing_time = 0
+	open()
+	_continue.grab_focus()
 	while _dialogue.visible_characters < _dialogue.get_total_character_count():
 		_typing_time += get_process_delta_time()
 		@warning_ignore("narrowing_conversion")
@@ -78,6 +81,7 @@ func _on_continue_pressed():
 		_dialogue.visible_characters = _dialogue.get_total_character_count()
 	else:
 		_current_line += 1
+		print(_lines)
 		if _current_line < _lines.size():
 			_next_line()
 		else:

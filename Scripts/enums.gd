@@ -6,3 +6,11 @@ enum NPCs
 	MAGE,
 	ROGUE
 }
+
+enum EquipmentType
+{
+	MAIN_HEAD,
+	OFF_HAND,
+	HEAD,
+	BACK
+}

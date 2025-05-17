@@ -1,14 +1,20 @@
-[gd_scene load_steps=7 format=3 uid="uid://dujtkfkjn3agj"]
+[gd_scene load_steps=12 format=3 uid="uid://dujtkfkjn3agj"]
 
 [ext_resource type="Script" uid="uid://yic1nyb43g2t" path="res://Scripts/level.gd" id="1_lj7g2"]
 [ext_resource type="MeshLibrary" uid="uid://ixy0tpubfryo" path="res://Imported Assets/Dungeon/dungeon_mesh_library.tres" id="2_8ffms"]
 [ext_resource type="PackedScene" uid="uid://di84uda7rr2ct" path="res://Scenes/Characters/rogue.tscn" id="4_ykh5e"]
 [ext_resource type="PackedScene" uid="uid://b5pf553lktajg" path="res://Scenes/Characters/mage.tscn" id="5_a1e6b"]
 [ext_resource type="PackedScene" uid="uid://7pr6qxigvjoc" path="res://Scenes/Characters/knight.tscn" id="6_r644w"]
+[ext_resource type="PackedScene" uid="uid://csh5huhat520f" path="res://Scenes/Items/coin_stack_small.tscn" id="6_y5wyw"]
+[ext_resource type="PackedScene" uid="uid://b8vcp8a01b8ad" path="res://Scenes/Items/coin_stack_large.tscn" id="7_xwoim"]
+[ext_resource type="PackedScene" uid="uid://dl6pyyxlpubf1" path="res://Scenes/Items/coin_stack_medium.tscn" id="8_vtdvj"]
+[ext_resource type="PackedScene" uid="uid://xxo65bylshuc" path="res://Scenes/Items/health_potion.tscn" id="9_vtdvj"]
+[ext_resource type="PackedScene" uid="uid://cnakjynsitnxa" path="res://Scenes/Items/axe.tscn" id="10_tlpit"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_06lu3"]
 
 [node name="Dungeon" type="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.737222, 0)
 script = ExtResource("1_lj7g2")
 
 [node name="Lighting" type="Node3D" parent="."]
@@ -103,3 +109,21 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13, 0, 1)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.5, 0, -11)
 
 [node name="Player Start" type="Marker3D" parent="."]
+
+[node name="Coin Stack Small" parent="." instance=ExtResource("6_y5wyw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, 0)
+
+[node name="Coin Stack Large" parent="." instance=ExtResource("7_xwoim")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, -2)
+
+[node name="Coin Stack Medium" parent="." instance=ExtResource("8_vtdvj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 4)
+
+[node name="Health Potion" parent="." instance=ExtResource("9_vtdvj")]
+transform = Transform3D(2.58096e-08, -0.866025, -0.5, 1, 2.98023e-08, 0, 1.49012e-08, -0.5, 0.866025, 5.62226, 0.229357, -1.80794)
+
+[node name="Health Potion2" parent="." instance=ExtResource("9_vtdvj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.10928, 0.67573, -1.73621)
+
+[node name="Axe" parent="." instance=ExtResource("10_tlpit")]
+transform = Transform3D(1, 0, 0, 0, 1.19249e-08, 1, 0, -1, 1.19249e-08, 4.03457, 1.08, -2.63654)

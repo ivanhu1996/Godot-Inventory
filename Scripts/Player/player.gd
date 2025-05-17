@@ -3,6 +3,10 @@ extends Node
 @export var _character : CharacterBody3D
 @export var _spring_arm : SpringArm3D
 @onready var _gm : Node3D = $/root/Game
+@onready var _pick_up_radius: Area3D = $"../Barbarian/Pick UP Radius"
+@onready var _inventory: Panel = %Inventory
+
+var _nearest_item :Node3D
 var _input_direction : Vector2
 var _move_direction : Vector3
 var enabled : bool = true:
@@ -15,7 +19,11 @@ var enabled : bool = true:
 func _input(event : InputEvent):
 	if event.is_action_pressed("pause"):
 		_gm.toggle_pause()
-	if get_tree().paused || not enabled:
+	if get_tree().paused:
+		return
+	if event.is_action_pressed("inventory"):
+		_gm.toggle_inventory()
+	if not enabled:
 		return
 	if event.is_action_pressed("run"):
 		_character.run()
@@ -26,7 +34,13 @@ func _input(event : InputEvent):
 	elif event.is_action_released("jump"):
 		_character.complete_jump()
 	elif event.is_action_pressed("interact"):
-		_character.interact()
+		_nearest_item = _pick_up_radius.get_nearest_item()
+		if _nearest_item:
+			#File.progress.add_to_inventory(_nearest_item)
+			_inventory.add_item(_nearest_item.resource)
+			_nearest_item.queue_free()
+		else:
+			_character.interact()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta : float):

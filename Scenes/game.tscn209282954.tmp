@@ -1,0 +1,290 @@
+[gd_scene load_steps=32 format=3 uid="uid://dil80q73hnvbt"]
+
+[ext_resource type="Script" uid="uid://c0q2efsjah66s" path="res://Scripts/Managers/game_manager.gd" id="1_8pybo"]
+[ext_resource type="Script" uid="uid://cpkjenwtqhkkd" path="res://Scripts/player.gd" id="2_16ona"]
+[ext_resource type="PackedScene" uid="uid://dujtkfkjn3agj" path="res://Scenes/Levels/dungeon.tscn" id="2_ljeyd"]
+[ext_resource type="PackedScene" uid="uid://dsgxki7n5lrmk" path="res://Scenes/Characters/barbarian.tscn" id="3_2iql4"]
+[ext_resource type="Script" uid="uid://c6arxewr2qrgd" path="res://Scripts/spring_arm.gd" id="3_u51m3"]
+[ext_resource type="Theme" uid="uid://b1vv3jre6npvq" path="res://menu_buttons.tres" id="6_1b651"]
+[ext_resource type="Script" uid="uid://bg4050r3wqbre" path="res://Scripts/UI/menu.gd" id="6_dr2w1"]
+[ext_resource type="Script" uid="uid://dplb5adrg2vf4" path="res://Scripts/Managers/event_manager.gd" id="6_lq361"]
+[ext_resource type="Script" uid="uid://cvgt2g72t8aom" path="res://Scripts/Events/camera.gd" id="7_dbeox"]
+[ext_resource type="Script" uid="uid://dk7sam7scjkio" path="res://Scripts/UI/wallet.gd" id="8_85qyi"]
+[ext_resource type="Script" uid="uid://2l2h0u00psxl" path="res://Scripts/UI/fade.gd" id="8_v3vli"]
+[ext_resource type="Script" uid="uid://cj3ddkx87fofj" path="res://Scripts/UI/dialog.gd" id="9_72i8y"]
+[ext_resource type="PackedScene" uid="uid://cjk5t1el4suya" path="res://Scenes/settings_menu.tscn" id="9_iopaj"]
+[ext_resource type="Texture2D" uid="uid://b8xkq2nlu8ff6" path="res://Imported Assets/UI/BoxesBanners/Box_Orange_Rounded.png" id="9_pkuuh"]
+[ext_resource type="Texture2D" uid="uid://dj7v5xjevsp4u" path="res://Imported Assets/UI/Icons/Icon_Small_Blank_Arrow.png" id="10_1khn6"]
+[ext_resource type="FontFile" uid="uid://cal1olhubng48" path="res://Imported Assets/Fonts/Celtica-Book.ttf" id="10_p2meq"]
+[ext_resource type="FontFile" uid="uid://dtdebvoxhhvdr" path="res://Imported Assets/Fonts/MorrisRomanBlack.ttf" id="11_j2tnh"]
+[ext_resource type="Texture2D" uid="uid://cj1rbj0sacwn3" path="res://Imported Assets/UI/Icons/Icon_Small_Coin.png" id="17_ewbju"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_7hssf"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_x06dg"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_yaw85"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_q3lu3"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_74rl3"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_lvgq5"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_tlh2x"]
+texture = ExtResource("9_pkuuh")
+texture_margin_left = 256.0
+texture_margin_top = 256.0
+texture_margin_right = 256.0
+texture_margin_bottom = 256.0
+
+[sub_resource type="Theme" id="Theme_rfyhr"]
+default_font = ExtResource("11_j2tnh")
+default_font_size = 32
+Button/colors/font_color = Color(0, 0, 0, 1)
+Button/colors/font_disabled_color = Color(0.501961, 0.501961, 0.501961, 0.501961)
+Button/colors/font_focus_color = Color(0.95, 0.95, 0.95, 1)
+Button/colors/font_hover_color = Color(0.95, 0.95, 0.95, 1)
+Button/colors/font_hover_pressed_color = Color(1, 1, 1, 1)
+Button/colors/font_outline_color = Color(0, 0, 0, 1)
+Button/colors/font_pressed_color = Color(1, 1, 1, 1)
+Button/constants/outline_size = 2
+Button/styles/disabled = SubResource("StyleBoxEmpty_x06dg")
+Button/styles/focus = SubResource("StyleBoxEmpty_yaw85")
+Button/styles/hover = SubResource("StyleBoxEmpty_q3lu3")
+Button/styles/normal = SubResource("StyleBoxEmpty_74rl3")
+Button/styles/pressed = SubResource("StyleBoxEmpty_lvgq5")
+Label/colors/font_color = Color(0.501961, 0.25098, 0.12549, 1)
+Label/colors/font_shadow_color = Color(0, 0, 0, 1)
+Label/fonts/font = ExtResource("10_p2meq")
+Panel/styles/panel = SubResource("StyleBoxTexture_tlh2x")
+RichTextLabel/colors/default_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_eq3vi"]
+texture = ExtResource("10_1khn6")
+modulate_color = Color(0, 1, 0, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ap2oq"]
+texture = ExtResource("10_1khn6")
+modulate_color = Color(0.501961, 0.501961, 0.501961, 0.501961)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_xmhg5"]
+texture = ExtResource("10_1khn6")
+modulate_color = Color(1, 1, 0, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_hne42"]
+texture = ExtResource("10_1khn6")
+modulate_color = Color(0, 0.501961, 0, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_md7i5"]
+texture = ExtResource("10_1khn6")
+
+[node name="Game" type="Node3D" node_paths=PackedStringArray("_character", "_settings_menu", "_fade")]
+script = ExtResource("1_8pybo")
+_character = NodePath("Barbarian")
+_settings_menu = NodePath("UI/Settings Menu")
+_fade = NodePath("UI/Fade")
+
+[node name="Dungeon" parent="." instance=ExtResource("2_ljeyd")]
+
+[node name="Barbarian" parent="." instance=ExtResource("3_2iql4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+_running_speed = 8.0
+
+[node name="SpringArm3D" type="SpringArm3D" parent="Barbarian"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+shape = SubResource("BoxShape3D_7hssf")
+spring_length = 5.0
+script = ExtResource("3_u51m3")
+
+[node name="Camera" type="Camera3D" parent="Barbarian/SpringArm3D"]
+h_offset = 1.0
+
+[node name="Player" type="Node" parent="." node_paths=PackedStringArray("_character", "_spring_arm")]
+process_mode = 3
+script = ExtResource("2_16ona")
+_character = NodePath("../Barbarian")
+_spring_arm = NodePath("../Barbarian/SpringArm3D")
+
+[node name="Event Manager" type="Node" parent="."]
+script = ExtResource("6_lq361")
+
+[node name="Camera3D" type="Camera3D" parent="Event Manager"]
+script = ExtResource("7_dbeox")
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="Wallet" type="HBoxContainer" parent="UI"]
+offset_left = 32.0
+offset_top = -42.0
+offset_right = 336.0
+script = ExtResource("8_85qyi")
+_on_screen_position = Vector2(32, 32)
+_off_screen_position = Vector2(32, -42)
+
+[node name="Icon" type="TextureRect" parent="UI/Wallet"]
+custom_minimum_size = Vector2(0, 42)
+layout_mode = 2
+texture = ExtResource("17_ewbju")
+expand_mode = 3
+stretch_mode = 4
+
+[node name="Counter" type="Label" parent="UI/Wallet"]
+layout_mode = 2
+tooltip_text = "99999999"
+mouse_filter = 0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 16
+theme_override_fonts/font = ExtResource("11_j2tnh")
+theme_override_font_sizes/font_size = 48
+text = "999999"
+vertical_alignment = 1
+
+[node name="Autohide" type="Timer" parent="UI/Wallet"]
+wait_time = 3.0
+one_shot = true
+
+[node name="Dialog" type="Control" parent="UI"]
+visible = false
+layout_mode = 3
+anchor_top = 0.667
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+theme = SubResource("Theme_rfyhr")
+script = ExtResource("9_72i8y")
+
+[node name="Box" type="Panel" parent="UI/Dialog"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 1280.0
+offset_bottom = 240.24
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.5, 0.5)
+
+[node name="Continue" type="Button" parent="UI/Dialog/Box"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -192.0
+offset_top = -176.48
+offset_right = -24.0
+offset_bottom = -22.48
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_styles/focus = SubResource("StyleBoxTexture_eq3vi")
+theme_override_styles/disabled = SubResource("StyleBoxTexture_ap2oq")
+theme_override_styles/hover = SubResource("StyleBoxTexture_xmhg5")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_hne42")
+theme_override_styles/normal = SubResource("StyleBoxTexture_md7i5")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/Dialog"]
+layout_mode = 0
+offset_left = 64.0
+offset_top = 32.0
+offset_right = 1216.0
+offset_bottom = 218.0
+
+[node name="Speaker" type="Label" parent="UI/Dialog/VBoxContainer"]
+visible = false
+layout_mode = 2
+text = "Somebody"
+
+[node name="Dialogue" type="RichTextLabel" parent="UI/Dialog/VBoxContainer"]
+clip_contents = false
+layout_mode = 2
+bbcode_enabled = true
+text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+fit_content = true
+
+[node name="Options" type="VBoxContainer" parent="UI/Dialog"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 128.0
+offset_top = -144.0
+offset_right = 243.0
+offset_bottom = -25.0
+grow_vertical = 0
+theme_override_constants/separation = 12
+
+[node name="Option 0" type="Button" parent="UI/Dialog/Options"]
+layout_mode = 2
+text = "Option 0"
+alignment = 0
+
+[node name="Option 1" type="Button" parent="UI/Dialog/Options"]
+layout_mode = 2
+text = "Option 1"
+alignment = 0
+
+[node name="Option 2" type="Button" parent="UI/Dialog/Options"]
+layout_mode = 2
+text = "Option 2"
+alignment = 0
+
+[node name="Pause Menu" type="VBoxContainer" parent="UI" node_paths=PackedStringArray("_default_focus_item")]
+process_mode = 2
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -39.5
+offset_top = -46.5
+offset_right = 39.5
+offset_bottom = 46.5
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("6_1b651")
+script = ExtResource("6_dr2w1")
+_default_focus_item = NodePath("Continue")
+
+[node name="Title" type="Label" parent="UI/Pause Menu"]
+layout_mode = 2
+text = "Pause"
+horizontal_alignment = 1
+
+[node name="Continue" type="Button" parent="UI/Pause Menu"]
+layout_mode = 2
+text = "Continue"
+
+[node name="Settings" type="Button" parent="UI/Pause Menu"]
+layout_mode = 2
+text = "Settings"
+
+[node name="Exit" type="Button" parent="UI/Pause Menu"]
+layout_mode = 2
+text = "Exit"
+
+[node name="Settings Menu" parent="UI" instance=ExtResource("9_iopaj")]
+visible = false
+
+[node name="Fade" type="ColorRect" parent="UI"]
+process_mode = 3
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+script = ExtResource("8_v3vli")
+
+[connection signal="pressed" from="UI/Dialog/Box/Continue" to="UI/Dialog" method="_on_continue_pressed"]
+[connection signal="pressed" from="UI/Dialog/Options/Option 0" to="UI/Dialog" method="_on_option_pressed" binds= [0]]
+[connection signal="pressed" from="UI/Dialog/Options/Option 1" to="UI/Dialog" method="_on_option_pressed" binds= [1]]
+[connection signal="pressed" from="UI/Dialog/Options/Option 2" to="UI/Dialog" method="_on_option_pressed" binds= [2]]
+[connection signal="pressed" from="UI/Pause Menu/Continue" to="." method="toggle_pause"]
+[connection signal="pressed" from="UI/Pause Menu/Settings" to="." method="_on_settings_pressed"]
+[connection signal="pressed" from="UI/Pause Menu/Exit" to="." method="_on_exit_pressed"]

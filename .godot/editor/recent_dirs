@@ -1,9 +1,14 @@
-res://Scenes
-res://Scripts/Autoloads
+res://Scenes/Items
+res://Scripts/Custom Resources/items
 res://Scripts/UI
+res://Scenes/UI
+res://Themes
+res://Scripts/Player
+res://Scripts
+res://
+res://Scripts/Autoloads
+res://Scripts/Events
+res://Scenes
 res://Imported Assets/Dungeon
 res://Scenes/Characters
-res://Scripts/Events
-res://
-res://Scripts
 res://Scripts/Managers
